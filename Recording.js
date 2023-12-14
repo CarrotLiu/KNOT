@@ -28,7 +28,7 @@ function toggleRecord() {
     fetch("/recordingStop"); 
   } else {
     btn.textContent = "Stop Recording";
-    fetch("/onDisinfection"); 
+    fetch("/recordingStart"); 
   }
   isDisinfectionOn = !isDisinfectionOn;
 }

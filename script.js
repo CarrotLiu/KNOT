@@ -59,6 +59,7 @@ function draw(){
     fill("#FEECEA");
     circle(0, 0, 50);
     pop();
+    links[i / (PI / 10)].position();
   }
   push();
   fill("#A0D4BD");
