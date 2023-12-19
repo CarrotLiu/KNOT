@@ -13,7 +13,7 @@ WiFiClient client;
 #define LED_TYPE NEOPIXEL 
 uint8_t max_bright = 128;
 
-#define DATA_PIN1 18          
+#define DATA_PIN1 33          
 #define NUM_LEDS1 20            
 CRGBArray<NUM_LEDS1> LEDBall;
 
@@ -58,7 +58,6 @@ void setup(){
   Serial.println(WiFi.localIP());
 #endif
 
-  // 隐藏IP地址
   if (MDNS.begin("knot")) // IP：knot.local
   {
     Serial.println("MDNS responder started");

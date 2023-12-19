@@ -1,6 +1,7 @@
 let source = new EventSource("/events");
 let isDisinfectionOn = false; 
 let isLightingOn = false;
+let names = ["mom", "dad", "grandma", "grandpa", "PP", "ziyi", "Tina", "Jt", "Julie"];
 
 source.onmessage = (event) => {
   //   console.log(event.data);
@@ -43,4 +44,18 @@ function toggleLighting() {
     fetch("/onLighting"); 
   }
   isLightingOn = !isLightingOn; 
+}
+
+
+function checkID(){
+  for(let i = 0; i < names.length; i ++){
+    if(document.title == names[i]){
+      console.log(names[i]);
+    }
+  }
+  
+  
+  // if(getElementsByTagName()){
+
+  // }
 }
