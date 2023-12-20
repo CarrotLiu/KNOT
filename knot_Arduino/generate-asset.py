@@ -6,7 +6,9 @@ files = [
     ['knot_Arduino/script.js', 'script_js'],
     ['knot_Arduino/assets/myFavicon.png', 'myFavicon'],
     ['knot_Arduino/mom.html', 'mom_page'],
-    ['knot_Arduino/Recording.js', 'recording_js']
+    ['knot_Arduino/Recording.js', 'recording_js'],
+    ['knot_Arduino/lib/p5.sound.min.js', 'p5_sound_js'],
+    ['knot_Arduino/lib/p5.js', 'p5_js']
     
 ]
 

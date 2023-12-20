@@ -112,6 +112,16 @@ void setup(){
             {
     server.sendHeader("content-encoding", "gzip");
     server.send_P(200, "text/css", style_css, sizeof(style_css)); });
+  
+  server.on("/lib/p5.js", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "text/javascript", p5_js, sizeof(p5_js)); });
+
+  server.on("/lib/p5.sound.min.js", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "text/javascript", p5_sound_js, sizeof(p5_sound_js)); });
 
   server.on("/script.js", []
             {
