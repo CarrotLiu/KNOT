@@ -1,11 +1,12 @@
 import gzip
 
 files = [
-    ['index.html', 'index_page'],
-    ['style.css', 'style_css'],
-    ['script.js', 'script_js'],
-    ['mcFavicon.png', 'mcFavicon'],
-    ['mom.html', 'mom_page']
+    ['knot_Arduino/index.html', 'index_page'],
+    ['knot_Arduino/style.css', 'style_css'],
+    ['knot_Arduino/script.js', 'script_js'],
+    ['knot_Arduino/assets/myFavicon.png', 'myFavicon'],
+    ['knot_Arduino/mom.html', 'mom_page'],
+    ['knot_Arduino/Recording.js', 'recording_js']
     
 ]
 

@@ -2,6 +2,7 @@ let source = new EventSource("/events");
 let isRecordingOn = false; 
 let isLightingOn = false;
 let links = [];
+let name = ["mom", "dad", "grandma", "grandpa", "PP", "ziyi", "Tina", "Jt", "Julie"];
 
 source.onmessage = (event) => {
   //   console.log(event.data);
@@ -67,3 +68,9 @@ function draw(){
   pop();
 }
 
+function checkID(){
+  console.log(document.title.id);
+  // if(getElementsByTagName()){
+
+  // }
+}

@@ -18,7 +18,7 @@ uint8_t max_bright = 128;
 CRGBArray<NUM_LEDS1> LEDBall;
 
 int lightnumber = 0;
-bool startLight[] = {false, false, false, false, false, false, false};
+bool startLight[] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
 
 void setup(){
@@ -72,7 +72,7 @@ void setup(){
   server.on("/recordingStop", []
             { 
               server.send(200, "text/plain", "Recording Stop"); 
-              startLight = true; });
+               });
 
 // light on
   server.on("/lightmom", []
@@ -101,7 +101,7 @@ void setup(){
   server.on("/recordingStart", []
             { 
               server.send(200, "text/plain", "stop lighting"); 
-              startLight = false; });
+              });
   
   server.on("/mom.html", []
           {
@@ -118,10 +118,15 @@ void setup(){
     server.sendHeader("content-encoding", "gzip");
     server.send_P(200, "text/javascript", script_js, sizeof(script_js)); });
 
-  server.on("/mcFavicon.png", []
+  server.on("/Recording.js", []
             {
     server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "img/png", mcFavicon, sizeof(mcFavicon)); });
+    server.send_P(200, "text/javascript", recording_js, sizeof(recording_js)); });
+
+  server.on("/assets/myFavicon.png", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "img/png", myFavicon, sizeof(myFavicon)); });
 
   server.on("/events", []
             {
@@ -147,7 +152,7 @@ void setup(){
 
 void loop(){
   server.handleClient();
-  for(int i = 0; i < startLight.length; i ++){
+  for(int i=0;i< 20;i++){
     if (startLight[i] == true) {
       fill_solid(LEDBall + i, 1, CRGB::OrangeRed);
       FastLED.show();
