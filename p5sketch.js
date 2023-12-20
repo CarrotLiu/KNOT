@@ -1,5 +1,5 @@
 let source = new EventSource("/events");
-let isRecordingOn = false; 
+let isRecordingOn = false;
 let isLightingOn = false;
 let links = [];
 
@@ -11,7 +11,6 @@ source.onmessage = (event) => {
 //   alert(`test message: ${event.data}`);
 // });
 
-
 // source.addEventListener("finish", (event) => {
 //   recordingStart = false;
 //   document.getElementById("light").textContent = `${event.data}`;
@@ -21,10 +20,10 @@ function toggleRecord() {
   let btn = document.getElementById("recordBtn");
   if (isRecordingOn) {
     btn.textContent = "Start Recording";
-    fetch("/recordingStop"); 
+    fetch("/recordingStop");
   } else {
     btn.textContent = "Stop Recording";
-    fetch("/recordingStart"); 
+    fetch("/recordingStart");
   }
   isRecordingOn = !isRecordingOn;
 }
@@ -36,24 +35,23 @@ function toggleLighting() {
     fetch("/offLighting");
   } else {
     btn.textContent = "Stop Lighting";
-    fetch("/onLighting"); 
+    fetch("/onLighting");
   }
-  isLightingOn = !isLightingOn; 
+  isLightingOn = !isLightingOn;
 }
-function setup(){
+function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   cnv.parent("cnv-container");
   cnv.position(0, 0);
-  cnv.style('z-index', '-1');
-  links.push(createA('/mom.html', 'mom', '_blank'));
-  links.push(createA('/dad.html', 'dad', '_blank'));
-  
+  cnv.style("z-index", "-1");
+  links.push(createA("/mom.html", "mom", "_blank"));
+  links.push(createA("/dad.html", "dad", "_blank"));
 }
-function draw(){
+function draw() {
   background("#B76A62");
   noStroke();
   translate(width / 2, height / 2);
-  for(let i = 0; i < 2 * PI; i += PI / 10){
+  for (let i = 0; i < 2 * PI; i += PI / 10) {
     push();
     translate(sin(i) * (150 + i * 30), cos(i) * (150 + i * 30));
     fill("#FEECEA");
@@ -67,3 +65,14 @@ function draw(){
   pop();
 }
 
+// function toggleLighting() {
+//   let btn = document.getElementById("lightingBtn");
+//   if (isLightingOn) {
+//     btn.textContent = "Start Lighting";
+//     fetch("/offLighting");
+//   } else {
+//     btn.textContent = "Stop Lighting";
+//     fetch("/onLighting");
+//   }
+//   isLightingOn = !isLightingOn;
+// }

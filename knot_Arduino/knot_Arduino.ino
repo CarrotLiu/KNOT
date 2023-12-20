@@ -10,20 +10,21 @@ WebServer server(80);
 
 WiFiClient client;
 
-#define LED_TYPE NEOPIXEL 
+#define LED_TYPE NEOPIXEL
 uint8_t max_bright = 128;
 
-#define DATA_PIN1 33          
-#define NUM_LEDS1 20            
+#define DATA_PIN1 33
+#define NUM_LEDS1 20
 CRGBArray<NUM_LEDS1> LEDBall;
 
 int lightnumber = 0;
 bool startLight[] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+bool colorLight[] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
-
-void setup(){
+void setup()
+{
   Serial.begin(115200);
-  delay(1000); 
+  delay(1000);
 
   FastLED.addLeds<LED_TYPE, DATA_PIN1>(LEDBall, NUM_LEDS1);
 
@@ -68,58 +69,65 @@ void setup(){
     server.sendHeader("content-encoding", "gzip");
     server.send_P(200, "text/html", index_page, sizeof(index_page)); });
 
-    
   server.on("/recordingStop", []
-            { 
-              server.send(200, "text/plain", "Recording Stop"); 
-               });
+            { server.send(200, "text/plain", "Recording Stop"); });
 
-// light on
+  // light on
   server.on("/lightmom", []
-          { 
+            { 
             server.send(200, "text/plain", "light mom"); 
             startLight[0] = true; });
   server.on("/lightdad", []
-          { 
+            { 
             server.send(200, "text/plain", "light dad"); 
             startLight[1] = true; });
   server.on("/lightgrandma", []
-          { 
+            { 
             server.send(200, "text/plain", "light grandma"); 
             startLight[2] = true; });
   server.on("/lightgrandpa", []
-          { 
+            { 
             server.send(200, "text/plain", "light grandpa"); 
             startLight[3] = true; });
-  server.on("/lighttina", []
-          { 
-            server.send(200, "text/plain", "light Tina"); 
+  server.on("/lightdoudou", []
+            { 
+            server.send(200, "text/plain", "light Doudou"); 
             startLight[4] = true; });
+  server.on("/lighttina", []
+            { 
+            server.send(200, "text/plain", "light Tina"); 
+            startLight[5] = true; });
+  server.on("/lightnadine", []
+            { 
+            server.send(200, "text/plain", "light Nadine"); 
+            startLight[17] = true; });
+  server.on("/lightjt", []
+            { 
+            server.send(200, "text/plain", "light Jt"); 
+            startLight[19] = true; });
 
   // light off
 
   server.on("/recordingStart", []
-            { 
-              server.send(200, "text/plain", "stop lighting"); 
-              });
-  
+            { server.send(200, "text/plain", "stop lighting"); });
+
   server.on("/mom.html", []
-          {
+            {
   server.sendHeader("content-encoding", "gzip");
   server.send_P(200, "text/html", mom_page, sizeof(mom_page)); });
 
   server.on("/dad.html", []
-          {
+            {
   server.sendHeader("content-encoding", "gzip");
   server.send_P(200, "text/html", dad_page, sizeof(dad_page)); });
 
   server.on("/grandma.html", []
-          {
+            {
   server.sendHeader("content-encoding", "gzip");
   server.send_P(200, "text/html", grandma_page, sizeof(grandma_page)); });
 
   server.on("/grandpa.html", []
-          {
+            {
   server.sendHeader("content-encoding", "gzip");
   server.send_P(200, "text/html", grandpa_page, sizeof(grandpa_page)); });
 
@@ -127,8 +135,6 @@ void setup(){
             {
     server.sendHeader("content-encoding", "gzip");
     server.send_P(200, "text/css", style_css, sizeof(style_css)); });
-  
-
 
   server.on("/script.js", []
             {
@@ -167,31 +173,50 @@ void setup(){
   server.begin();
 }
 
-void loop(){
+void loop()
+{
   server.handleClient();
-  for(int i=0;i< 20;i++){
-    if (startLight[i] == true) {
+  for (int i = 0; i < 20; i++)
+  {
+    if (startLight[i] == true)
+    {
       fill_solid(LEDBall + i, 1, CRGB::OrangeRed);
       FastLED.show();
-    } else{
+    }
+    else
+    {
+      fill_solid(LEDBall + i, 1, CRGB::Black);
+      FastLED.show();
+    }
+    if (colorLight[i] == true)
+    {
+      fill_solid(LEDBall + i, 1, CRGB::OrangeRed);
+      FastLED.show();
+      delay(1000);
+      fill_solid(LEDBall + i, 1, CRGB::Black);
+      FastLED.show();
+      delay(1000);
+    }
+    else
+    {
       fill_solid(LEDBall + i, 1, CRGB::Black);
       FastLED.show();
     }
   }
 }
 
-        // if (client.connected())
-        //   client.printf("event: pause\n"
-        //                 "data: Please Stay Away\n"
-        //                 "\n"); 
-        // if (client.connected())
-      //   client.printf("event: time\n"
-      //                 "data: %02d:%02d\n"
-      //                 "\n",
-      //                 minute, second);
+// if (client.connected())
+//   client.printf("event: pause\n"
+//                 "data: Please Stay Away\n"
+//                 "\n");
+// if (client.connected())
+//   client.printf("event: time\n"
+//                 "data: %02d:%02d\n"
+//                 "\n",
+//                 minute, second);
 
-   // if (client.connected())
-    //   client.printf("event: time\n"
-    //                 "data: %02d:%02d\n"
-    //                 "\n",
-    //                 minute, second);
+// if (client.connected())
+//   client.printf("event: time\n"
+//                 "data: %02d:%02d\n"
+//                 "\n",
+//                 minute, second);

@@ -13,7 +13,18 @@
     <body>
         <section class="btn-block">
             <div class="friend-block">
-                <div class="btn_container">
+                <form name="myForm" onsubmit="return friendLogin()" method="post">
+                    <div class="container">
+                        <label for="fname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="fname" required>
+                
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                
+                        <button type="submit">Login</button>
+                    </div>
+                </form>
+                <!-- <div class="btn_container">
                     <a href="/mom.html"><button class="friend">Mom</button></a>
                 </div>
                 <div class="btn_container">
@@ -21,7 +32,7 @@
                 </div>
                 <div class="btn_container">
                     <a href="/grandma.html"><button class="friend">Grandma</button></a>
-                </div>
+                </div> -->
             </div>
         </section>
             <!-- <button class = "btn1" onclick="fetch('/bat-on')">Battery On</button>
