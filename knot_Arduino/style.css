@@ -82,33 +82,12 @@ margin-left: auto;
     width: auto;
     /* display:block; */
 } 
-   
 
 
 .btn1:hover {
     background-color: #de3522;
 }
 
-.eye-btn:hover {
-    background-color: #de3522;
-}
-
-.add-time:hover {
-    background-color: #de3522;
-
-}
-
-#cnv-container{
-
-}
-
-
-
-/* .btn1:focus {
-    box-shadow: none;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-} */
 
 @media (min-width: 768px) {
     .btn1 {

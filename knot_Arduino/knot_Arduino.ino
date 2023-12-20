@@ -108,6 +108,21 @@ void setup(){
   server.sendHeader("content-encoding", "gzip");
   server.send_P(200, "text/html", mom_page, sizeof(mom_page)); });
 
+  server.on("/dad.html", []
+          {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", dad_page, sizeof(dad_page)); });
+
+  server.on("/grandma.html", []
+          {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", grandma_page, sizeof(grandma_page)); });
+
+  server.on("/grandpa.html", []
+          {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", grandpa_page, sizeof(grandpa_page)); });
+
   server.on("/style.css", []
             {
     server.sendHeader("content-encoding", "gzip");
