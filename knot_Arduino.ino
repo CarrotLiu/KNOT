@@ -18,7 +18,7 @@ uint8_t max_bright = 128;
 CRGBArray<NUM_LEDS1> LEDBall;
 
 int lightnumber = 0;
-bool startLight = false;
+bool startLight[] = {false, false, false, false, false, false, false};
 
 
 void setup(){
@@ -74,6 +74,30 @@ void setup(){
               server.send(200, "text/plain", "Recording Stop"); 
               startLight = true; });
 
+// light on
+  server.on("/lightmom", []
+          { 
+            server.send(200, "text/plain", "light mom"); 
+            startLight[0] = true; });
+  server.on("/lightdad", []
+          { 
+            server.send(200, "text/plain", "light dad"); 
+            startLight[1] = true; });
+  server.on("/lightgrandma", []
+          { 
+            server.send(200, "text/plain", "light grandma"); 
+            startLight[2] = true; });
+  server.on("/lightgrandpa", []
+          { 
+            server.send(200, "text/plain", "light grandpa"); 
+            startLight[3] = true; });
+  server.on("/lighttina", []
+          { 
+            server.send(200, "text/plain", "light Tina"); 
+            startLight[4] = true; });
+
+  // light off
+
   server.on("/recordingStart", []
             { 
               server.send(200, "text/plain", "stop lighting"); 
@@ -123,13 +147,14 @@ void setup(){
 
 void loop(){
   server.handleClient();
-  if (startLight == true) {
-    fill_solid(LEDBall, 1, CRGB::Blue);
-    FastLED.show();
-
-  } else{
-    fill_solid(LEDBall, 1, CRGB::Black);
-    FastLED.show();
+  for(int i = 0; i < startLight.length; i ++){
+    if (startLight[i] == true) {
+      fill_solid(LEDBall + i, 1, CRGB::OrangeRed);
+      FastLED.show();
+    } else{
+      fill_solid(LEDBall + i, 1, CRGB::Black);
+      FastLED.show();
+    }
   }
 }
 
