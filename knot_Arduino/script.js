@@ -57,6 +57,7 @@ function friendLogin() {
   let isUserFound = false;
 
   for (let i = 0; i < names.length; i++) {
+    console.log(passwords.length, names.length);
     if (inputName == names[i]) {
       isUserFound = true;
       if (inputPassword == passwords[i]) {
@@ -74,5 +75,5 @@ function friendLogin() {
     alert("Wrong User Name!");
   }
 
-  return false;
+  return false; // Prevent the form from submitting
 }

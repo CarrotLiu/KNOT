@@ -7,6 +7,7 @@ files = [
     ['knot_Arduino/assets/myFavicon.png', 'myFavicon'],
     ['knot_Arduino/mom.html', 'mom_page'],
     ['knot_Arduino/dad.html', 'dad_page'],
+    ['knot_Arduino/jt.html', 'jt_page'],
     ['knot_Arduino/grandma.html', 'grandma_page'],
     ['knot_Arduino/grandpa.html', 'grandpa_page'],
     ['knot_Arduino/Recording.js', 'recording_js']
