@@ -64,16 +64,62 @@ void setup()
     Serial.println("MDNS responder started");
   }
 
+  // index.html
   server.on("/",  []
     {
       server.sendHeader("content-encoding", "gzip");
       server.send_P(200, "text/html", index_page, sizeof(index_page)); 
     });
+  // css
+  server.on("/style.css", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "text/css", style_css, sizeof(style_css)); });
+  
+  // js
+  server.on("/script.js", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "text/javascript", script_js, sizeof(script_js)); });
 
-  server.on("/recordingStop", []
-            { server.send(200, "text/plain", "Recording Stop"); });
+  server.on("/Recording.js", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "text/javascript", recording_js, sizeof(recording_js)); });
+  
+  // Favicon
+  server.on("/assets/myFavicon.png", []
+            {
+    server.sendHeader("content-encoding", "gzip");
+    server.send_P(200, "img/png", myFavicon, sizeof(myFavicon)); });
 
-  // light on
+  // friends pages
+  server.on("/mom.html", []
+            {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", mom_page, sizeof(mom_page)); });
+
+  server.on("/dad.html", []
+            {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", dad_page, sizeof(dad_page)); });
+
+  server.on("/grandma.html", []
+            {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", grandma_page, sizeof(grandma_page)); });
+
+  server.on("/grandpa.html", []
+            {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", grandpa_page, sizeof(grandpa_page)); });
+
+  server.on("/jt.html", []
+            {
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", jt_page, sizeof(jt_page)); });
+
+  // light corresponding LED when a friend reply digitally
   server.on("/lightmom", []
             { 
             server.send(200, "text/plain", "light mom"); 
@@ -107,66 +153,7 @@ void setup()
             server.send(200, "text/plain", "light Jt"); 
             startLight[19] = true; });
 
-  // light off
-
-  server.on("/recordingStart", []
-            { server.send(200, "text/plain", "stop lighting"); });
-
-  server.on("/mom.html", []
-            {
-  server.sendHeader("content-encoding", "gzip");
-  server.send_P(200, "text/html", mom_page, sizeof(mom_page)); });
-
-  server.on("/dad.html", []
-            {
-  server.sendHeader("content-encoding", "gzip");
-  server.send_P(200, "text/html", dad_page, sizeof(dad_page)); });
-
-  server.on("/grandma.html", []
-            {
-  server.sendHeader("content-encoding", "gzip");
-  server.send_P(200, "text/html", grandma_page, sizeof(grandma_page)); });
-
-  server.on("/grandpa.html", []
-            {
-  server.sendHeader("content-encoding", "gzip");
-  server.send_P(200, "text/html", grandpa_page, sizeof(grandpa_page)); });
-
-  // server.on("/jt.html", []
-  //           {
-  // server.sendHeader("content-encoding", "gzip");
-  // server.send_P(200, "text/html", jt_page, sizeof(jt_page)); });
-
-
-  server.on("/jt.html", []
-  {
-  server.send(200, "text/html", "Welcome, jt!"); 
-  server.sendHeader("content-encoding", "gzip");
-  server.send_P(200, "text/html", jt_page, sizeof(jt_page)); 
-
-  });
-
-
-  server.on("/style.css", []
-            {
-    server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "text/css", style_css, sizeof(style_css)); });
-
-  server.on("/script.js", []
-            {
-    server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "text/javascript", script_js, sizeof(script_js)); });
-
-  server.on("/Recording.js", []
-            {
-    server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "text/javascript", recording_js, sizeof(recording_js)); });
-
-  server.on("/assets/myFavicon.png", []
-            {
-    server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "img/png", myFavicon, sizeof(myFavicon)); });
-
+// connect client
   server.on("/events", []
             {
      Serial.print("event triggered");

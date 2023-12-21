@@ -11,20 +11,17 @@
     </head>
 
     <body>
-        <section class="btn-block">
-            <div class="friend-block">
-                <form name="myForm"  method="post">
-                    <div class="container">
-                        <label for="fname"><b>Username</b></label>
-                        <input type="text" id="fname" placeholder="Enter Username" name="fname" required>
-                
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" id = "psw" placeholder="Enter Password" name="psw" required>
-                
-                        <input type="button" value="login" onclick='friendLogin()'>
-                    </div>
-                </form>
-            </div>
-        </section>
+        <div class="login-block">
+            <form name="myForm"  method="post">
+                <div class="container">
+                    <label for="fname" class = "loginLabel"><b>用户名 Username</b></label>
+                    <input type="text" id="fname" placeholder="请输入用户名 Enter Username" name="fname" required>
+            
+                    <label for="psw" class = "loginLabel"><b>密码 Password</b></label>
+                    <input type="password" id = "psw" placeholder="请输入密码 Enter Password" name="psw" required>
+                </div>
+            </form>
+        </div>
+        <button class="orange-btn" onclick='friendLogin()'>登陆 Login</button>
     </body>
 </html>
