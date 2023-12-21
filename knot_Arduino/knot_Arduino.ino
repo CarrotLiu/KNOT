@@ -64,10 +64,11 @@ void setup()
     Serial.println("MDNS responder started");
   }
 
-  server.on("/", []
-            {
-    server.sendHeader("content-encoding", "gzip");
-    server.send_P(200, "text/html", index_page, sizeof(index_page)); });
+  server.on("/",  []
+    {
+      server.sendHeader("content-encoding", "gzip");
+      server.send_P(200, "text/html", index_page, sizeof(index_page)); 
+    });
 
   server.on("/recordingStop", []
             { server.send(200, "text/plain", "Recording Stop"); });
@@ -136,21 +137,13 @@ void setup()
   // server.sendHeader("content-encoding", "gzip");
   // server.send_P(200, "text/html", jt_page, sizeof(jt_page)); });
 
-  server.on("/", HTTP_POST, []
-  {
-    String username = server.arg("fname");
-    String password = server.arg("psw");
-    if (username == "jt" && password == "1") {
-      server.sendHeader("content-encoding", "/" + username + ".html", true); // Redirect to the new page
-      server.send(303, "text/plain", ""); // Send HTTP 303 See Other response
-    } else {
-      server.send(200, "text/plain", "Login failed");
-    }
-  });
 
-  server.on("/jt.html", HTTP_GET,  []
+  server.on("/jt.html", []
   {
   server.send(200, "text/html", "Welcome, jt!"); 
+  server.sendHeader("content-encoding", "gzip");
+  server.send_P(200, "text/html", jt_page, sizeof(jt_page)); 
+
   });
 
 

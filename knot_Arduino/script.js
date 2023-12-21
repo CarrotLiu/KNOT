@@ -51,29 +51,20 @@ source.onmessage = (event) => {
 };
 
 function friendLogin() {
-  let inputName = document.forms["myForm"]["fname"].value;
-  let inputPassword = document.forms["myForm"]["psw"].value;
-
+  let inputName = document.getElementById('fname').value;
+  let inputPassword = document.getElementById('psw').value;
   let isUserFound = false;
-
   for (let i = 0; i < names.length; i++) {
-    console.log(passwords.length, names.length);
     if (inputName == names[i]) {
       isUserFound = true;
       if (inputPassword == passwords[i]) {
-        // Redirect to the specific webpage
         window.location.href = "/" + names[i] + ".html";
-        return false; // Prevent the form from submitting
       } else {
         alert("Wrong Password!");
-        return false;
       }
     }
   }
-
   if (!isUserFound) {
     alert("Wrong User Name!");
   }
-
-  return false; // Prevent the form from submitting
 }
